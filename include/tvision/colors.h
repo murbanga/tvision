@@ -339,7 +339,7 @@ struct TColorDesired
     inline bool operator!=(TColorDesired other) const;
 
     constexpr inline uint32_t bitCast() const;
-    constexpr inline void bitCast(uint32_t val);
+    inline void bitCast(uint32_t val);
 
 };
 
@@ -448,7 +448,7 @@ constexpr inline uint32_t TColorDesired::bitCast() const
     return _data;
 }
 
-constexpr inline void TColorDesired::bitCast(uint32_t val)
+inline void TColorDesired::bitCast(uint32_t val)
 {
     _data = val;
 }
@@ -527,13 +527,13 @@ struct TColorAttr
 
 };
 
-constexpr inline TColorDesired getFore(const TColorAttr &attr);
-constexpr inline TColorDesired getBack(const TColorAttr &attr);
+inline TColorDesired getFore(const TColorAttr &attr);
+inline TColorDesired getBack(const TColorAttr &attr);
 constexpr inline ushort getStyle(const TColorAttr &attr);
-constexpr inline void setFore(TColorAttr &attr, TColorDesired fg);
-constexpr inline void setBack(TColorAttr &attr, TColorDesired bg);
-constexpr inline void setStyle(TColorAttr &attr, ushort style);
-constexpr inline TColorAttr reverseAttribute(TColorAttr attr);
+inline void setFore(TColorAttr &attr, TColorDesired fg);
+inline void setBack(TColorAttr &attr, TColorDesired bg);
+inline void setStyle(TColorAttr &attr, ushort style);
+inline TColorAttr reverseAttribute(TColorAttr attr);
 
 constexpr inline TColorAttr::TColorAttr(int bios) :
     _style(0),
@@ -595,14 +595,14 @@ inline bool TColorAttr::operator!=(int bios) const
     return !(*this == bios);
 }
 
-constexpr inline TColorDesired getFore(const TColorAttr &attr)
+inline TColorDesired getFore(const TColorAttr &attr)
 {
     TColorDesired color {};
     color.bitCast(attr._fg);
     return color;
 }
 
-constexpr inline TColorDesired getBack(const TColorAttr &attr)
+inline TColorDesired getBack(const TColorAttr &attr)
 {
     TColorDesired color {};
     color.bitCast(attr._bg);
@@ -614,22 +614,22 @@ constexpr inline ushort getStyle(const TColorAttr &attr)
     return attr._style;
 }
 
-constexpr inline void setFore(TColorAttr &attr, TColorDesired color)
+inline void setFore(TColorAttr &attr, TColorDesired color)
 {
     attr._fg = color.bitCast();
 }
 
-constexpr inline void setBack(TColorAttr &attr, TColorDesired color)
+inline void setBack(TColorAttr &attr, TColorDesired color)
 {
     attr._bg = color.bitCast();
 }
 
-constexpr inline void setStyle(TColorAttr &attr, ushort style)
+inline void setStyle(TColorAttr &attr, ushort style)
 {
     attr._style = style;
 }
 
-constexpr inline TColorAttr reverseAttribute(TColorAttr attr)
+inline TColorAttr reverseAttribute(TColorAttr attr)
 {
     auto fg = ::getFore(attr),
          bg = ::getBack(attr);

@@ -6,7 +6,8 @@ list(REMOVE_ITEM TVSOURCE "${CMAKE_CURRENT_LIST_DIR}/tvision/geninc.cpp")
 add_library(${PROJECT_NAME} STATIC ${TVSOURCE})
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
-target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_14)
+#target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_11)
+set(CMAKE_CXX_STANDARD 14)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
     "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>"
@@ -174,7 +175,7 @@ install(DIRECTORY "${PROJECT_SOURCE_DIR}/include/tvision" DESTINATION ${CMAKE_IN
 
 # Build optimization
 
-if (CMAKE_VERSION VERSION_GREATER_EQUAL "3.16.0" AND TV_OPTIMIZE_BUILD)
+if ((CMAKE_VERSION VERSION_GREATER "3.16.0" OR CMAKE_VERSION VERSION_EQUAL "3.16.0") AND TV_OPTIMIZE_BUILD)
     # Enable precompiled headers.
     target_precompile_headers(${PROJECT_NAME} PRIVATE "${PROJECT_SOURCE_DIR}/include/pch.h")
 
