@@ -7,7 +7,7 @@ namespace tvision
 {
 
 template<class Int>
-inline constexpr Int string_as_int(TStringView s) noexcept
+inline Int string_as_int(TStringView s) noexcept
 // CAUTION: It is not endian-safe to reinterpret the result as an array of bytes.
 {
     Int res = 0;

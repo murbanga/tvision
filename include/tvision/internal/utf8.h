@@ -19,7 +19,7 @@ inline constexpr uint Utf8BytesLeft(char first_byte) noexcept
            (first_byte & 0b11111000) == 0b11110000 ? 3 : 0;
 }
 
-inline constexpr uint32_t utf8To32(TStringView s) noexcept
+inline uint32_t utf8To32(TStringView s) noexcept
 {
     // Precondition: s is a valid UTF-8 sequence.
     switch (s.size()) {

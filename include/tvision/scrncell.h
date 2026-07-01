@@ -69,12 +69,12 @@ struct TCellChar
 
     constexpr inline bool isWide() const;
     constexpr inline bool isWideCharTrail() const;
-    constexpr inline void appendZeroWidthChar(TStringView mbc);
+    inline void appendZeroWidthChar(TStringView mbc);
     constexpr inline TStringView getText() const;
     constexpr inline size_t size() const;
 
-    constexpr inline char& operator[](size_t i);
-    constexpr inline const char& operator[](size_t i) const;
+    inline char& operator[](size_t i);
+    inline const char& operator[](size_t i) const;
 };
 
 inline void TCellChar::moveChar(char ch)
@@ -135,7 +135,7 @@ constexpr inline bool TCellChar::isWideCharTrail() const
     return _flags & fTrail;
 }
 
-constexpr inline void TCellChar::appendZeroWidthChar(TStringView mbc)
+inline void TCellChar::appendZeroWidthChar(TStringView mbc)
 // Pre: !isWideCharTrail();
 {
     size_t sz = size();
@@ -166,12 +166,12 @@ constexpr inline size_t TCellChar::size() const
     return max(_textLength, 1);
 }
 
-constexpr inline char& TCellChar::operator[](size_t i)
+inline char& TCellChar::operator[](size_t i)
 {
     return _text[i];
 }
 
-constexpr inline const char& TCellChar::operator[](size_t i) const
+inline const char& TCellChar::operator[](size_t i) const
 {
     return _text[i];
 }

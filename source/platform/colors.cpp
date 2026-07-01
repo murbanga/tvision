@@ -35,7 +35,7 @@ struct HCL
 constexpr uint8_t HUE_PRECISION = 32;
 constexpr uint8_t HUE_MAX = 6*HUE_PRECISION;
 
-static constexpr
+static
 HCL RGBtoHCL(uint8_t R, uint8_t G, uint8_t B) noexcept
 {
     uint8_t Xmin = min(min(R, G), B);
@@ -67,7 +67,7 @@ static constexpr uint8_t u8(double d) noexcept
     return uint8_t(d*255);
 }
 
-static constexpr
+static
 uint8_t RGBtoXTerm16(uint8_t r, uint8_t g, uint8_t b) noexcept
 {
     HCL c = RGBtoHCL(r, g, b);
@@ -98,7 +98,7 @@ uint8_t RGBtoXTerm16(uint8_t r, uint8_t g, uint8_t b) noexcept
     }
 }
 
-static constexpr
+static
 constarray<uint8_t, 256> initXTerm256toXTerm16LUT() noexcept
 {
     constarray<uint8_t, 256> res {};
@@ -133,7 +133,7 @@ uint32_t pack(uint8_t R, uint8_t G, uint8_t B) noexcept
     return (((R << 8) | G) << 8) | B;
 };
 
-static constexpr
+static
 constarray<uint32_t, 256> initXTerm256toRGBLUT() noexcept
 {
     // Indices 16..255 only.
@@ -159,11 +159,11 @@ constarray<uint32_t, 256> initXTerm256toRGBLUT() noexcept
     return res;
 }
 
-extern constexpr
-constarray<uint8_t, 256> XTerm256toXTerm16LUT = initXTerm256toXTerm16LUT();
+extern
+const constarray<uint8_t, 256> XTerm256toXTerm16LUT = initXTerm256toXTerm16LUT();
 
-extern constexpr
-constarray<uint32_t, 256> XTerm256toRGBLUT = initXTerm256toRGBLUT();
+extern
+const constarray<uint32_t, 256> XTerm256toRGBLUT = initXTerm256toRGBLUT();
 
 uint8_t RGBtoXTerm16Impl(TColorRGB c) noexcept
 {

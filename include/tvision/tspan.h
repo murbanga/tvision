@@ -90,7 +90,7 @@ public:
         return ptr[len - 1];
     }
 
-    constexpr TSpan subspan(size_t pos) const
+    TSpan subspan(size_t pos) const
     {
         if (pos >= len)
             return TSpan<T>(ptr + len, 0);
@@ -98,7 +98,7 @@ public:
             return TSpan<T>(ptr + pos, len - pos);
     }
 
-    constexpr TSpan subspan(size_t pos, size_t n) const
+    TSpan subspan(size_t pos, size_t n) const
     {
         if (pos >= len)
             return TSpan<T>(ptr + len, 0);

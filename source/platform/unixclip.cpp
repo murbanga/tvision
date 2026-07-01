@@ -255,8 +255,8 @@ enum class run_subprocess_mode
 
 struct run_subprocess_t
 {
-    pid_t pid {-1};
-    int fd {-1};
+    pid_t pid;
+    int fd;
 };
 
 static run_subprocess_t run_subprocess(const char * const argv[], const char * const env[], run_subprocess_mode mode)
@@ -307,9 +307,9 @@ static bool close_subprocess(run_subprocess_t &process)
 
 struct read_pipe_t
 {
-    char *data {nullptr};
-    size_t size {0};
-    bool incomplete {false};
+    char *data;
+    size_t size;
+    bool incomplete;
 };
 
 static read_pipe_t read_pipe(int fd, int timeoutMs)
@@ -352,8 +352,8 @@ static read_pipe_t read_pipe(int fd, int timeoutMs)
 
 struct write_pipe_t
 {
-    bool success {false};
-    bool incomplete {false};
+    bool success;
+    bool incomplete;
 };
 
 static write_pipe_t write_pipe(int fd, const char *data, size_t size, int timeoutMs)

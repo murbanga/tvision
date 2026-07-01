@@ -5,7 +5,7 @@
 namespace tvision
 {
 
-static constexpr
+static
 size_t _fast_utoa(uint32_t value, char *buffer) noexcept
 {
     // Copyright(c) 2014-2016 Milo Yip (https://github.com/miloyip/itoa-benchmark)

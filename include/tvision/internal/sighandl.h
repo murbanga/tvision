@@ -31,7 +31,7 @@ public:
 
 private:
 
-    static constexpr struct sigaction makeDefaultAction() noexcept
+    static struct sigaction makeDefaultAction() noexcept
     {
         struct sigaction sa = {};
         sa.sa_handler = SIG_DFL;
@@ -48,7 +48,7 @@ private:
 
     struct HandlerInfo
     {
-        struct sigaction action {makeDefaultAction()};
+        struct sigaction action = makeDefaultAction();
         std::atomic<bool> running {false};
     };
 
