@@ -2,10 +2,19 @@
 #include <internal/constarr.h>
 #include <internal/strings.h>
 
+// Several versions of GCC crash when generating the table below at compile time.
+#if !defined(__GNUC__ ) || __GNUC__ >= 9 || (__GNUC__ == 5 && __GNUC_MINOR__ <= 3)
+#define BTOA_CONSTEXPR constexpr
+#define BTOA_CONSTEXPR_VAR constexpr
+#else
+#define BTOA_CONSTEXPR
+#define BTOA_CONSTEXPR_VAR const
+#endif
+
 namespace tvision
 {
 
-static
+static BTOA_CONSTEXPR
 size_t _fast_utoa(uint32_t value, char *buffer) noexcept
 {
     // Copyright(c) 2014-2016 Milo Yip (https://github.com/miloyip/itoa-benchmark)
@@ -34,15 +43,6 @@ char *fast_utoa(uint32_t value, char *buffer) noexcept
 {
     return buffer + _fast_utoa(value, buffer);
 }
-
-// Several versions of GCC crash when generating the table below at compile time.
-#if !defined(__GNUC__ ) || __GNUC__ >= 9 || (__GNUC__ == 5 && __GNUC_MINOR__ <= 3)
-#define BTOA_CONSTEXPR constexpr
-#define BTOA_CONSTEXPR_VAR constexpr
-#else
-#define BTOA_CONSTEXPR
-#define BTOA_CONSTEXPR_VAR const
-#endif
 
 static BTOA_CONSTEXPR
 btoa_lut_t init_btoa_lut() noexcept
