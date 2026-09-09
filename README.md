@@ -1,3 +1,6 @@
+relaxed version, buildable by gcc 4.9
+main goal is to be able to run on Raspberry Pi 1B
+
 # Turbo Vision
 
 A modern port of Turbo Vision 2.0, the classical framework for text-based user interfaces. Now cross-platform and with Unicode support.
